@@ -160,3 +160,4 @@ const handleLanguageSelect = async (language: 'ru' | 'kz') => {
   }, 250)
 }
 </script>
+
