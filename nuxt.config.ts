@@ -16,11 +16,7 @@ export default defineNuxtConfig({
     defaultLocale: 'ru',
     langDir: './locales',
     strategy: 'no_prefix',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'language',
-      redirectOn: 'root',
-    },
+    detectBrowserLanguage: false,
   },
   tailwindcss: {
     configPath: '~/tailwind.config.js',

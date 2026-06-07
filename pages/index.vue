@@ -25,12 +25,13 @@
 </template>
 
 <script setup lang="ts">
-const languageCookie = useCookie('language')
-const languageSelected = ref(!!languageCookie.value)
+const chosenCookie = useCookie('languageChosen', { maxAge: 60 * 60 * 24 * 365 })
+const languageSelected = ref(!!chosenCookie.value)
 const isMobile = ref(false)
 const isMobileMenuOpen = ref(false)
 
 const handleLanguageSelect = () => {
+  chosenCookie.value = 'true'
   languageSelected.value = true
 }
 

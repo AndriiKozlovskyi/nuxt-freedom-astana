@@ -678,7 +678,7 @@ textarea.input { resize: none; min-height: 120px; }
 .nav-logo-text {
 	font-family: "Cormorant Garamond", Georgia, serif;
 	font-size: clamp(1.1rem, 3vw, 1.65rem);
-	font-weight: 700;
+	font-weight: 400;
 	line-height: 1;
 	letter-spacing: -0.01em;
 	background: linear-gradient(90deg, #0cb195 0%, #0cb195 25%, #368cbc 45%, #368cbc 100%);

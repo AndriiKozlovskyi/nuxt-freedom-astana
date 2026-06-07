@@ -945,16 +945,7 @@ const _inlineRuntimeConfig = {
           ]
         }
       ],
-      "detectBrowserLanguage": {
-        "alwaysRedirect": false,
-        "cookieCrossOrigin": false,
-        "cookieDomain": "",
-        "cookieKey": "language",
-        "cookieSecure": false,
-        "fallbackLocale": "",
-        "redirectOn": "root",
-        "useCookie": true
-      },
+      "detectBrowserLanguage": false,
       "experimental": {
         "localeDetector": "",
         "switchLocalePathLinkSSR": false,
