@@ -55,7 +55,7 @@ function walkDir(dir: string): string[] {
   return out
 }
 
-async function uploadAsset(spaceId: number, filePath: string): Promise<string> {
+async function uploadAsset(spaceId: number, filePath: string): Promise<{ id: number; filename: string }> {
   const filename = path.basename(filePath)
   const mimeType = MIME[path.extname(filePath).toLowerCase()] ?? 'application/octet-stream'
   const fileBuffer = fs.readFileSync(filePath)
@@ -82,14 +82,15 @@ async function uploadAsset(spaceId: number, filePath: string): Promise<string> {
 
   // Step 3: Finalize — tell Storyblok the upload completed
   await sleep(300)
-  await mapi('GET', `/spaces/${spaceId}/assets/${signed.id}/finish_upload`)
+  const finished = await mapi('GET', `/spaces/${spaceId}/assets/${signed.id}/finish_upload`)
 
-  // Build CDN URL
   const cdnUrl: string =
+    finished?.filename ??
+    finished?.pretty_url ??
     signed.pretty_url ??
     `https://a.storyblok.com/f/${spaceId}/${signed.id}/${filename}`
 
-  return cdnUrl
+  return { id: signed.id as number, filename: cdnUrl }
 }
 
 async function main() {
@@ -101,7 +102,7 @@ async function main() {
   console.log(`\n📦 Space: "${spaces[0].name}" (${spaceId})\n`)
 
   // Load existing manifest so re-runs skip already-uploaded files
-  const manifest: Record<string, string> = fs.existsSync(MANIFEST_PATH)
+  const manifest: Record<string, { id: number; filename: string }> = fs.existsSync(MANIFEST_PATH)
     ? JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'))
     : {}
 
@@ -122,12 +123,12 @@ async function main() {
 
     await sleep(400)
     try {
-      const cdnUrl = await uploadAsset(spaceId, filePath)
-      manifest[relKey] = cdnUrl
+      const asset = await uploadAsset(spaceId, filePath)
+      manifest[relKey] = asset
       // Write manifest after every upload so progress is saved on failure
       fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2))
       console.log(`   ✓ ${relKey}`)
-      console.log(`     → ${cdnUrl}`)
+      console.log(`     → ${asset.filename}`)
       uploaded++
     } catch (e) {
       console.error(`   ✗ ${relKey}: ${(e as Error).message}`)

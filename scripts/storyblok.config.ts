@@ -3,8 +3,8 @@
  * This is the ONLY file you need to edit when reusing these scripts.
  */
 
-import ruMessages from '../locales/ru.json'
-import kzMessages from '../locales/kz.json'
+import ruMessages from '../i18n/locales/ru.json'
+import kzMessages from '../i18n/locales/kz.json'
 
 const config = {
   // ── Auth ──────────────────────────────────────────────────────────────────

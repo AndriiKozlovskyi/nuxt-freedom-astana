@@ -312,5 +312,63 @@
     "consultation": "Консультация",
     "copy": "© 2026 CZM Freedom. Все права защищены.",
     "tag": "Частный Центр Избавления От Зависимости"
+  },
+  "images": {
+    "logo": "assets/images/language/logo.png",
+    "langBg": "assets/images/language/friends.jpg",
+    "contactPhoto": "assets/images/contact/phone.jpeg",
+    "services": {
+      "alcohol": "assets/images/services/alcohol.jpg",
+      "drugs": "assets/images/services/drugs.jpg",
+      "gambling": "assets/images/services/gambling.jpg",
+      "mental": "assets/images/services/mental.jpg",
+      "rehab": "assets/images/services/rehab.jpg",
+      "home": "assets/images/services/home.jpg"
+    },
+    "team": {
+      "employer1": "assets/images/team/employer1.jpeg",
+      "employer2": "assets/images/team/employer2.jpeg",
+      "employer3": "assets/images/team/employer3.jpeg",
+      "employer4": "assets/images/team/employer4.jpeg",
+      "employer5": "assets/images/team/employer5.jpeg",
+      "employer6": "assets/images/team/employer6.jpeg",
+      "employer7": "assets/images/team/employer7.jpeg",
+      "employer8": "assets/images/team/employer8.jpeg",
+      "employer9": "assets/images/team/employer9.jpeg",
+      "employer10": "assets/images/team/employer10.jpeg"
+    },
+    "house": {
+      "room1": "assets/images/house/room1.jpeg",
+      "room2": "assets/images/house/room2.jpeg",
+      "room3": "assets/images/house/room3.jpeg",
+      "room4": "assets/images/house/room4.jpeg",
+      "room5": "assets/images/house/room5.jpeg"
+    },
+    "certificates": {
+      "cert1": "assets/images/certificate/certificates/certificate1.jpeg",
+      "cert2": "assets/images/certificate/certificates/certificate2.jpeg",
+      "cert3": "assets/images/certificate/certificates/certificate3.jpeg",
+      "cert4": "assets/images/certificate/certificates/certificate4.jpeg",
+      "cert5": "assets/images/certificate/certificates/certificate5.jpeg",
+      "cert6": "assets/images/certificate/certificates/certificate6.jpeg",
+      "cert7": "assets/images/certificate/certificates/certificate7.jpeg",
+      "cert8": "assets/images/certificate/certificates/certificate8.png",
+      "cert9": "assets/images/certificate/certificates/certificate9.png",
+      "cert10": "assets/images/certificate/certificates/certificate10.png",
+      "cert11": "assets/images/certificate/certificates/certificate11.png",
+      "cert13": "assets/images/certificate/certificates/certificate13.png",
+      "cert14": "assets/images/certificate/certificates/certificate14.png",
+      "cert15": "assets/images/certificate/certificates/certificate15.png",
+      "cert16": "assets/images/certificate/certificates/certificate16.png",
+      "cert17": "assets/images/certificate/certificates/certificate17.png",
+      "cert18": "assets/images/certificate/certificates/certificate18.png",
+      "cert19": "assets/images/certificate/certificates/certificate19.png",
+      "cert20": "assets/images/certificate/certificates/certificate20.png",
+      "cert21": "assets/images/certificate/certificates/certificate21.png",
+      "cert22": "assets/images/certificate/certificates/certificate22.png",
+      "cert23": "assets/images/certificate/certificates/certificate23.png",
+      "cert24": "assets/images/certificate/certificates/certificate24.png",
+      "cert25": "assets/images/certificate/certificates/certificate25.jpeg"
+    }
   }
 }

@@ -40,12 +40,28 @@ async function mapi(method: string, endpoint: string, body?: unknown) {
 
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms))
 
-/** Recursively walk an object and replace local asset paths with CDN URLs */
-function applyManifest(obj: unknown, manifest: Record<string, string>): unknown {
+type AssetEntry = { id: number; filename: string }
+
+function toSbAsset(entry: AssetEntry): Record<string, unknown> {
+  return {
+    id: entry.id,
+    filename: entry.filename,
+    name: entry.filename.split('/').pop() ?? '',
+    alt: '',
+    title: '',
+    focus: '',
+    copyright: '',
+    fieldtype: 'asset',
+    is_external_url: false,
+  }
+}
+
+/** Recursively walk an object and replace local asset paths with Storyblok asset objects */
+function applyManifest(obj: unknown, manifest: Record<string, AssetEntry>): unknown {
   if (typeof obj === 'string') {
-    // Match paths like "assets/images/..." or "/assets/images/..."
     const key = obj.replace(/^\//, '')
-    return manifest[key] ?? obj
+    const entry = manifest[key]
+    return entry ? toSbAsset(entry) : obj
   }
   if (Array.isArray(obj)) return obj.map(v => applyManifest(v, manifest))
   if (obj && typeof obj === 'object') {
@@ -59,8 +75,10 @@ function applyManifest(obj: unknown, manifest: Record<string, string>): unknown 
 async function main() {
   console.log('🔑 Using PAT:', PAT.slice(0, 6) + '…')
 
+  type AssetEntry = { id: number; filename: string }
+
   // Load asset manifest if present
-  const manifest: Record<string, string> = fs.existsSync(MANIFEST_PATH)
+  const manifest: Record<string, AssetEntry> = fs.existsSync(MANIFEST_PATH)
     ? JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'))
     : {}
   const hasManifest = Object.keys(manifest).length > 0
