@@ -1,39 +1,29 @@
 <template>
   <div>
-    <AppLanguageSelector v-if="!languageSelected" @language-select="handleLanguageSelect" />
-    <template v-else>
-      <AppVideoWidget v-if="!(isMobile && isMobileMenuOpen)" />
-      <AppHeader />
-      <main>
-        <AppHero />
-        <AppStats />
-        <AppAbout />
-        <AppServices />
-        <AppCertificates />
-        <AppStages />
-        <AppMethods />
-        <AppDetoxAccordion />
-        <AppTeam />
-        <AppTestimonials />
-        <AppFaq />
-        <AppCta />
-        <AppContacts />
-      </main>
-      <AppFooter />
-    </template>
+    <AppVideoWidget v-if="!(isMobile && isMobileMenuOpen)" />
+    <AppHeader />
+    <main>
+      <AppHero />
+      <AppStats />
+      <AppAbout />
+      <AppServices />
+      <AppCertificates />
+      <AppStages />
+      <AppMethods />
+      <AppDetoxAccordion />
+      <AppTeam />
+      <AppTestimonials />
+      <AppFaq />
+      <AppCta />
+      <AppContacts />
+    </main>
+    <AppFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-const chosenCookie = useCookie('languageChosen', { maxAge: 60 * 60 * 24 * 365 })
-const languageSelected = ref(!!chosenCookie.value)
 const isMobile = ref(false)
 const isMobileMenuOpen = ref(false)
-
-const handleLanguageSelect = () => {
-  chosenCookie.value = 'true'
-  languageSelected.value = true
-}
 
 const revealAll = () => {
   document.body.classList.add('js-ready')
@@ -41,21 +31,16 @@ const revealAll = () => {
 }
 
 const bindPageEffects = () => {
-  // Smooth scroll for anchor links
   const anchors = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')
   const handleClick = (e: Event) => {
     const a = e.currentTarget as HTMLAnchorElement
     const id = a.getAttribute('href')!.slice(1)
     if (!id) return
     const el = document.getElementById(id)
-    if (el) {
-      e.preventDefault()
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }) }
   }
   anchors.forEach(a => a.addEventListener('click', handleClick))
 
-  // Card tilt effect
   const cards = document.querySelectorAll<HTMLElement>('.srv-card')
   const onMove = (e: MouseEvent) => {
     const card = e.currentTarget as HTMLElement
@@ -64,21 +49,13 @@ const bindPageEffects = () => {
     const y = (e.clientY - r.top) / r.height - 0.5
     card.style.transform = `translateY(-14px) scale(1.02) rotateX(${-y * 4}deg) rotateY(${x * 4}deg)`
   }
-  const onLeave = (e: MouseEvent) => {
-    (e.currentTarget as HTMLElement).style.transform = ''
-  }
-  cards.forEach(card => {
-    card.addEventListener('mousemove', onMove)
-    card.addEventListener('mouseleave', onLeave)
-  })
+  const onLeave = (e: MouseEvent) => { (e.currentTarget as HTMLElement).style.transform = '' }
+  cards.forEach(card => { card.addEventListener('mousemove', onMove); card.addEventListener('mouseleave', onLeave) })
 
-  // Mobile menu observer
   if (isMobile.value) {
     const menu = document.getElementById('mobileMenu')
     if (menu) {
-      const observer = new MutationObserver(() => {
-        isMobileMenuOpen.value = menu.classList.contains('open')
-      })
+      const observer = new MutationObserver(() => { isMobileMenuOpen.value = menu.classList.contains('open') })
       observer.observe(menu, { attributes: true, attributeFilter: ['class'] })
       isMobileMenuOpen.value = menu.classList.contains('open')
     }
@@ -86,24 +63,11 @@ const bindPageEffects = () => {
 }
 
 onMounted(() => {
-  const checkMobile = () => {
-    isMobile.value = window.innerWidth <= 900
-  }
+  const checkMobile = () => { isMobile.value = window.innerWidth <= 900 }
   checkMobile()
   window.addEventListener('resize', checkMobile)
-
-  if (languageSelected.value) {
-    revealAll()
-    bindPageEffects()
-  }
-
-  return () => window.removeEventListener('resize', checkMobile)
-})
-
-watch(languageSelected, async (selected) => {
-  if (!selected) return
-  await nextTick() // wait for v-else DOM to mount
   revealAll()
   bindPageEffects()
+  return () => window.removeEventListener('resize', checkMobile)
 })
 </script>

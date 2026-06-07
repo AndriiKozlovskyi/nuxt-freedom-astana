@@ -1,5 +1,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
+  routeRules: {
+    '/': { redirect: '/ru' },
+  },
   devtools: { enabled: false },
   modules: ['@nuxtjs/i18n', '@nuxtjs/tailwindcss'],
   css: [
@@ -15,7 +18,7 @@ export default defineNuxtConfig({
     lazy: true,
     defaultLocale: 'ru',
     langDir: './locales',
-    strategy: 'no_prefix',
+    strategy: 'prefix',
     detectBrowserLanguage: false,
   },
   tailwindcss: {

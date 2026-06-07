@@ -80,7 +80,7 @@ export const nuxtI18nOptions = {
   routesNameSeparator: "___",
   trailingSlash: false,
   defaultLocaleRouteNameSuffix: "default",
-  strategy: "no_prefix",
+  strategy: "prefix",
   lazy: true,
   langDir: "./locales",
   rootRedirect: undefined,

@@ -898,6 +898,12 @@ const _inlineRuntimeConfig = {
       "/__nuxt_error": {
         "cache": false
       },
+      "/": {
+        "redirect": {
+          "to": "/ru",
+          "statusCode": 307
+        }
+      },
       "/_nuxt/builds/meta/**": {
         "headers": {
           "cache-control": "public, max-age=31536000, immutable"
@@ -915,7 +921,7 @@ const _inlineRuntimeConfig = {
       "baseUrl": "",
       "defaultLocale": "ru",
       "defaultDirection": "ltr",
-      "strategy": "no_prefix",
+      "strategy": "prefix",
       "lazy": true,
       "rootRedirect": "",
       "routesNameSeparator": "___",

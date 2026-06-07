@@ -92,7 +92,8 @@
 <script setup lang="ts">
 import logo from '~/assets/images/language/logo.png'
 
-const { t, locale, setLocale } = useI18n()
+const { t, locale } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
 
 const navLinks = computed(() => [
   { href: '#about', icon: 'ℹ️', label: t('header.about') },
@@ -104,9 +105,9 @@ const navLinks = computed(() => [
   { href: '#contact', icon: '📍', label: t('header.contacts') },
 ])
 
-const toggleLanguage = async () => {
+const toggleLanguage = () => {
   const newLang = locale.value === 'ru' ? 'kz' : 'ru'
-  await setLocale(newLang)
+  navigateTo(switchLocalePath(newLang))
 }
 
 function toggleMobile() {
