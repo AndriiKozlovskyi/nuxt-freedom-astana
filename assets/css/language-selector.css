@@ -1,0 +1,599 @@
+/* ================================================
+   LanguageSelector – ls
+   Mirrors Tilda page: T1272 + T183 + T396 + T898
+   ================================================ */
+
+/* Root wrapper */
+.ls {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 9999;
+  font-family: "Roboto", Arial, sans-serif;
+  color: #000;
+}
+
+.ls--visible {
+  opacity: 1;
+}
+
+
+/* ================================================
+   T1272 – Fixed header / nav
+   ================================================ */
+
+.ls__nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 20;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ls__nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.ls__nav-logo-img {
+  max-width: 68px;
+  width: 68px;
+  object-fit: contain;
+}
+
+.ls__nav-logo-text {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: linear-gradient(90deg, #0cb195 0%, #0cb195 25%, #368cbc 45%, #368cbc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ls__nav-menu {
+  flex: 1;
+  padding-left: 40px;
+}
+
+.ls__nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.ls__nav-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.ls__nav-link:hover {
+  color: #606060;
+}
+
+
+
+/* ================================================
+   T183 – Cover / Hero
+   ================================================ */
+
+.ls__cover {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ls__cover-carrier,
+.ls__cover-filter {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ls__cover-carrier {
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.ls__cover-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ls__cover-content {
+  text-align: center;
+  color: #fff;
+  max-width: 960px;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.ls__cover-uptitle {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1.55;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ls__cover-uptitle a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.ls__cover-title {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 88px;
+  line-height: 1.17;
+  letter-spacing: 1px;
+  padding: 24px 0;
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 1200px) {
+.ls__cover-uptitle { font-size: 30px; }
+  .ls__cover-title   { font-size: 78px; }
+}
+
+@media screen and (max-width: 640px) {
+  .ls__cover-uptitle { font-size: 24px; padding-right: 10px; padding-left: 10px; }
+  .ls__cover-title   { font-size: 42px; padding-right: 10px; padding-left: 10px; }
+}
+
+@media screen and (max-width: 480px) {
+  .ls__cover-title { font-size: 36px; }
+}
+
+.ls__cover-buttons {
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Flash animation (Tilda btneffects-flash) */
+@keyframes flash {
+  20% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.ls__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1ch;
+  max-width: 100%;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+  --height: 58px;
+  --border-width: 2px;
+  font-size: 18px;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: calc(((var(--height) - 1em * 1.4) / 2) - var(--border-width));
+  padding-bottom: calc(((var(--height) - 1em * 1.4) / 2) - var(--border-width));
+  color: #fff;
+  background-color: #63c8ff;
+  border-style: solid;
+  border-color: #63c8ff;
+  border-width: var(--border-width);
+  border-radius: 100px;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition-duration: 0.2s;
+  transition-property: background-color, color, border-color, box-shadow, opacity, transform, gap;
+  transition-timing-function: ease-in-out;
+}
+
+@media screen and (max-width: 640px) {
+  .ls__btn { white-space: normal; }
+}
+
+.ls__btn:hover {
+  background-color: #4ebef9;
+  border-color: #4ebef9;
+}
+
+.ls__btn-effects-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-85px);
+  animation: flash 3s linear infinite;
+}
+
+.ls__btn-effects {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.4)
+  );
+  width: 45px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  transform: skewX(-45deg);
+}
+
+/* ================================================
+   T396 – Contacts artboard
+   ================================================ */
+
+.ls__t396 {
+  background-color: #fff;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ls__t396-inner {
+  text-align: center;
+  width: 100%;
+  max-width: 640px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.ls__t396-phone {
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.ls__t396-phone a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ls__t396-address {
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.ls__t396-address a {
+  color: #000;
+  text-decoration: none;
+}
+
+.ls__t396-twogis {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.ls__t396-twogis a {
+  color: #3e3e3e;
+  text-decoration: none;
+}
+
+.ls__t396-icons {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ls__t396-icons a {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.ls__t396-icons img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ================================================
+   T898 – Floating widget
+   ================================================ */
+
+.ls__t898 {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9010;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.ls__t898-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.ls__t898-links--open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.ls__t898-icon-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.ls__t898-btn-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 5px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.ls__t898-svg-wrapper {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+}
+
+.ls__t898-svg-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.ls__t898-svg-wrapper svg {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.ls__t898-toggle {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(74, 195, 128, 0.5);
+  flex-shrink: 0;
+}
+
+.ls__t898-icon {
+  display: block;
+}
+
+.ls__t898-icon--hidden {
+  display: none;
+}
+
+/* ================================================
+   Responsive
+   ================================================ */
+
+@media screen and (max-width: 1199px) {
+  .ls__cover-carrier {
+    background-attachment: scroll;
+  }
+}
+
+.ls__nav-socials {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.ls__socials-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  text-decoration: none;
+}
+
+/* Hamburger button – hidden on desktop */
+.ls__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 4px;
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ls__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #000;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+
+.ls__hamburger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.ls__hamburger--open span:nth-child(2) {
+  opacity: 0;
+}
+
+.ls__hamburger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile dropdown panel */
+.ls__mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 20px 20px 24px;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+.ls__mobile-link {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #000;
+  text-decoration: none;
+}
+
+.ls__mobile-link:hover {
+  color: #606060;
+}
+
+.ls__mobile-socials {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media screen and (max-width: 960px) {
+  .ls__nav {
+    min-height: 70px;
+    position: fixed;
+    overflow: visible;
+  }
+
+  .ls__nav-menu {
+    display: none;
+  }
+
+  .ls__nav-socials {
+    display: none;
+  }
+
+  .ls__hamburger {
+    display: flex;
+  }
+
+  .ls__mobile-menu {
+    display: flex;
+  }
+
+  .ls__nav-logo-img {
+    max-width: 50px;
+    width: 50px;
+  }
+
+  .ls__nav-logo-text {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .ls__t396 {
+    height: 280px;
+  }
+
+  .ls__t396-phone,
+  .ls__t396-address {
+    font-size: 30px;
+  }
+
+  .ls__t396-twogis {
+    font-size: 17px;
+  }
+
+  .ls__t396-icons img {
+    width: 50px;
+    height: 50px;
+  }
+
+.ls__cover-uptitle { font-size: 22px; }
+
+  .ls__btn {
+    width: 100%;
+    text-align: center;
+    max-width: 220px;
+    font-size: 16px;
+  }
+}

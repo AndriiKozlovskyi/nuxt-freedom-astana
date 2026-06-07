@@ -1,0 +1,28 @@
+{
+  "name": "nuxt-freedom-astana",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "storyblok:migrate": "npx tsx scripts/migrate-to-storyblok.ts",
+    "storyblok:seed": "npx tsx scripts/seed-storyblok.ts",
+    "storyblok:upload": "npx tsx scripts/upload-assets-to-storyblok.ts"
+  },
+  "dependencies": {
+    "@nuxtjs/i18n": "^9.5.6",
+    "@nuxtjs/tailwindcss": "^6.12.2",
+    "nuxt": "^3.15.4",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.12.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3"
+  }
+}
